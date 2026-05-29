@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block title %}Profile | ProjectHub{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body">
+        <h1 class="h3">My Profile</h1>
+
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        <p class="text-muted">
+            Profile editing and contact details will be added in a later commit.
+        </p>
+    </div>
+</div>
+{% endblock %}
