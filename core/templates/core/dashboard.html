@@ -1,0 +1,91 @@
+{% extends "core/base.html" %}
+
+{% block title %}Dashboard | ProjectHub{% endblock %}
+
+{% block content %}
+
+<h1 class="h3 mb-4">Dashboard</h1>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h2>{{ total_projects }}</h2>
+                <p class="text-muted mb-0">Total Projects</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h2>{{ planning_projects }}</h2>
+                <p class="text-muted mb-0">Planning</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h2>{{ in_progress_projects }}</h2>
+                <p class="text-muted mb-0">In Progress</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card shadow-sm text-center">
+            <div class="card-body">
+                <h2>{{ completed_projects }}</h2>
+                <p class="text-muted mb-0">Completed</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="h5">Recent Projects</h2>
+
+            <a href="{% url 'project_create' %}" class="btn btn-primary btn-sm">
+                Add Project
+            </a>
+        </div>
+
+        {% if recent_projects %}
+
+            <ul class="list-group list-group-flush">
+
+                {% for project in recent_projects %}
+
+                    <li class="list-group-item d-flex justify-content-between">
+                        <a href="{% url 'project_detail' project.pk %}">
+                            {{ project.name }}
+                        </a>
+
+                        <span class="badge bg-secondary">
+                            {{ project.get_status_display }}
+                        </span>
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p class="text-muted mb-0">
+                No projects yet. Create your first project to get started.
+            </p>
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
