@@ -1,0 +1,59 @@
+{% extends "core/base.html" %}
+
+{% block title %}Projects | ProjectHub{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h3">My Projects</h1>
+
+    <a href="{% url 'project_create' %}" class="btn btn-primary">
+        Add Project
+    </a>
+</div>
+
+{% if projects %}
+
+    <div class="row g-3">
+
+        {% for project in projects %}
+
+            <div class="col-md-6 col-lg-4">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h2 class="h5">
+                            <a href="{% url 'project_detail' project.pk %}">
+                                {{ project.name }}
+                            </a>
+                        </h2>
+
+                        <p class="text-muted">
+                            {{ project.description|truncatewords:20 }}
+                        </p>
+
+                        <span class="badge bg-secondary">
+                            {{ project.get_status_display }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% else %}
+
+    <div class="alert alert-info">
+        You have not created any projects yet.
+    </div>
+
+{% endif %}
+
+{% endblock %}
