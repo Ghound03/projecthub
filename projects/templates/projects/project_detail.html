@@ -16,6 +16,16 @@
                 <span class="badge bg-secondary">
                     {{ project.get_status_display }}
                 </span>
+                
+                   <p>
+    <strong>Category:</strong>
+
+    {% if project.category %}
+        {{ project.category.name }}
+    {% else %}
+        No category assigned
+    {% endif %}
+</p>
             </div>
 
             <div>

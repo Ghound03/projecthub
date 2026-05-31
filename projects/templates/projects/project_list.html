@@ -38,6 +38,12 @@
                             {{ project.get_status_display }}
                         </span>
 
+                        {% if project.category %}
+                        <span class="badge bg-info">
+                             {{ project.category.name }}
+                       </span>
+                     {% endif %}
+
                     </div>
 
                 </div>

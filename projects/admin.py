@@ -1,6 +1,5 @@
 from django.contrib import admin
-
-from .models import Project
+from .models import Project, Category
 
 
 @admin.register(Project)
@@ -24,4 +23,16 @@ class ProjectAdmin(admin.ModelAdmin):
         "name",
         "description",
         "stakeholders",
+    )
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "name",
+    )
+
+    search_fields = (
+        "name",
     )

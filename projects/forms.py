@@ -12,6 +12,7 @@ class ProjectForm(forms.ModelForm):
         model = Project
 
         fields = [
+            "category",
             "name",
             "description",
             "start_date",
