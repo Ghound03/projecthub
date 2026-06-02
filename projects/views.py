@@ -3,21 +3,63 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import ProjectForm
-from .models import Project
+from .models import Project, Category
 
 
 @login_required
 def project_list(request):
     """
-    Display all projects owned by the logged-in user.
+    Display projects with search and filtering.
     """
 
-    projects = Project.objects.filter(owner=request.user)
+    projects = Project.objects.filter(
+        owner=request.user
+    )
+
+    search_query = request.GET.get(
+        "search",
+        ""
+    )
+
+    status_filter = request.GET.get(
+        "status",
+        ""
+    )
+
+    category_filter = request.GET.get(
+        "category",
+        ""
+    )
+
+    if search_query:
+        projects = projects.filter(
+            name__icontains=search_query
+        )
+
+    if status_filter:
+        projects = projects.filter(
+            status=status_filter
+        )
+
+    if category_filter:
+        projects = projects.filter(
+            category_id=category_filter
+        )
+
+    categories = Category.objects.all()
+
+    context = {
+        "projects": projects,
+        "categories": categories,
+        "search_query": search_query,
+        "status_filter": status_filter,
+        "category_filter": category_filter,
+    }
 
     return render(
         request,
         "projects/project_list.html",
-        {"projects": projects}
+        context
     )
 
 
