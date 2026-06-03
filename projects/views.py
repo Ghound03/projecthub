@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-
+from users.permissions import is_admin
 from .forms import ProjectForm
 from .models import Project, Category
 
@@ -156,6 +156,17 @@ def project_delete(request, pk):
     """
     Delete an existing project owned by the logged-in user.
     """
+    if not is_admin(request.user):
+
+     messages.error(
+        request,
+        "Only administrators can delete projects."
+    )
+
+     return redirect(
+        "project_detail",
+        pk=pk
+    )
 
     project = get_object_or_404(
         Project,

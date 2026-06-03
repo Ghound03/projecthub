@@ -22,6 +22,11 @@ Profile | ProjectHub
             {{ user.email }}
         </p>
 
+        <p>
+    <strong>Role:</strong>
+    {{ user.profile.get_role_display }}
+</p>
+
         <hr>
 
         <form method="post">

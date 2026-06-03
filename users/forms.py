@@ -29,6 +29,7 @@ class ProfileUpdateForm(ModelForm):
         model = Profile
 
         fields = [
+            "role",
             "phone_number",
             "address",
             "bio"

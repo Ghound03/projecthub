@@ -7,10 +7,22 @@ class Profile(models.Model):
     Additional information linked to a Django user.
     """
 
+    ROLE_CHOICES = [
+    ("admin", "Admin"),
+    ("manager", "Manager"),
+    ("user", "User"),
+]
+
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE
     )
+
+    role = models.CharField(
+    max_length=20,
+    choices=ROLE_CHOICES,
+    default="user"
+     )
 
     phone_number = models.CharField(
         max_length=20,
