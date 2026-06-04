@@ -46,7 +46,18 @@
 
 </div>
 
-<div class="card shadow-sm">
+<button
+    class="btn btn-outline-primary mb-3"
+    data-bs-toggle="collapse"
+    data-bs-target="#recentProjects">
+
+    Toggle Recent Projects
+
+</button>
+
+<div id="recentProjects" class="collapse show">
+
+ <div class="card shadow-sm">
     <div class="card-body">
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -86,6 +97,8 @@
         {% endif %}
 
     </div>
+ </div>
+
 </div>
 
 {% endblock %}
