@@ -46,6 +46,28 @@
 
 </div>
 
+<div class="card shadow-sm mb-4">
+
+    <div class="card-body">
+
+        <h2 class="h5 mb-3">
+            Project Status Overview
+        </h2>
+
+        <canvas
+    id="projectStatusChart"
+
+    data-planning="{{ chart_planning }}"
+    data-inprogress="{{ chart_in_progress }}"
+    data-completed="{{ chart_completed }}"
+    data-delayed="{{ chart_delayed }}">
+
+</canvas>
+
+    </div>
+
+</div>
+
 <button
     class="btn btn-outline-primary mb-3"
     data-bs-toggle="collapse"
