@@ -1,12 +1,10 @@
 from django import forms
 
-from .models import Project
+from .models import (Project, ProjectDocument)
 
 
 class ProjectForm(forms.ModelForm):
-    """
-    Form used to create and update project records.
-    """
+    
 
     class Meta:
         model = Project
@@ -27,3 +25,14 @@ class ProjectForm(forms.ModelForm):
             "description": forms.Textarea(attrs={"rows": 4}),
             "stakeholders": forms.Textarea(attrs={"rows": 3}),
         }
+
+
+class ProjectDocumentForm(forms.ModelForm):
+
+    class Meta:
+        model = ProjectDocument
+
+        fields = [
+            "title",
+            "file",
+        ]

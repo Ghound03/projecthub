@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from users.permissions import is_admin
-from .forms import ProjectForm
+from .forms import (ProjectForm, ProjectDocumentForm)
 from .models import Project, Category
 
 
@@ -188,4 +188,55 @@ def project_delete(request, pk):
         request,
         "projects/project_confirm_delete.html",
         {"project": project}
+    )
+
+@login_required
+def upload_document(request, pk):
+    """
+    Upload a document to a project.
+    """
+
+    project = get_object_or_404(
+        Project,
+        pk=pk,
+        owner=request.user
+    )
+
+    if request.method == "POST":
+
+        form = ProjectDocumentForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+
+            document = form.save(
+                commit=False
+            )
+
+            document.project = project
+            document.save()
+
+            messages.success(
+                request,
+                "Document uploaded successfully."
+            )
+
+            return redirect(
+                "project_detail",
+                pk=project.pk
+            )
+
+    else:
+
+        form = ProjectDocumentForm()
+
+    return render(
+        request,
+        "projects/document_form.html",
+        {
+            "form": form,
+            "project": project,
+        }
     )

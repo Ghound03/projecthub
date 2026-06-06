@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Project, Category
+from .models import Project, Category, ProjectDocument
+
 
 
 @admin.register(Project)
@@ -35,4 +36,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
     search_fields = (
         "name",
+    )
+
+@admin.register(ProjectDocument)
+class ProjectDocumentAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "project",
+        "uploaded_at",
     )

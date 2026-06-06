@@ -1,0 +1,44 @@
+{% extends "core/base.html" %}
+
+{% block title %}
+Upload Document
+{% endblock %}
+
+{% block content %}
+
+<div class="card shadow-sm">
+
+    <div class="card-body">
+
+        <h1 class="h4">
+            Upload Document
+        </h1>
+
+        <p>
+            Project:
+            {{ project.name }}
+        </p>
+
+        <form
+            method="post"
+            enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn btn-primary">
+
+                Upload
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

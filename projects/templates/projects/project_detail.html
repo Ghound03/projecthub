@@ -61,6 +61,50 @@
             {{ project.stakeholders }}
         </p>
 
+        <hr>
+
+        <h3 class="h5">
+            Project Documents
+        </h3>
+
+        <a href="{% url 'upload_document' project.pk %}"
+           class="btn btn-primary btn-sm mb-3">
+
+            Upload Document
+
+        </a>
+
+        {% if project.documents.all %}
+
+            <ul class="list-group">
+
+                {% for document in project.documents.all %}
+
+                    <li class="list-group-item d-flex justify-content-between">
+
+                        {{ document.title }}
+
+                        <a href="{{ document.file.url }}"
+                           target="_blank">
+
+                            Download
+
+                        </a>
+
+                    </li>
+
+                {% endfor %}
+
+            </ul>
+
+        {% else %}
+
+            <p class="text-muted">
+                No documents uploaded.
+            </p>
+
+        {% endif %}
+
     </div>
 
 </div>
