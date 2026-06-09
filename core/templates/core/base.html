@@ -51,12 +51,21 @@
 
                 </a>
 
-                <a class="nav-link"
-                   href="{% url 'inbox' %}">
+                <a class="nav-link" href="{% url 'inbox' %}">
 
-                    Inbox
+    Inbox
 
-                </a>
+    {% if unread_message_count > 0 %}
+
+        <span class="badge bg-danger">
+
+            {{ unread_message_count }}
+
+        </span>
+
+    {% endif %}
+
+</a>
 
                 <a class="nav-link"
                    href="{% url 'profile' %}">
@@ -139,13 +148,38 @@
 
 </main>
 
-<footer class="bg-dark text-white text-center py-3 mt-5">
+<footer class="bg-dark text-white mt-5">
 
-    <div class="container">
+    <div class="container py-4">
 
-        <p class="mb-0">
-            &copy; 2026 ProjectHub
-        </p>
+        <div class="row">
+
+            <div class="col-md-6">
+
+                <h5>
+                    ProjectHub
+                </h5>
+
+                <p>
+                    A collaborative project management
+                    platform built using Django.
+                </p>
+
+            </div>
+
+            <div class="col-md-6 text-md-end">
+
+                <p>
+                    Frameworks Assignment
+                </p>
+
+                <p>
+                    &copy; 2026 ProjectHub
+                </p>
+
+            </div>
+
+        </div>
 
     </div>
 
